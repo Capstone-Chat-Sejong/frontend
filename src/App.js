@@ -1,5 +1,7 @@
+import SerongRoutes from "./Routes";
+
 function App() {
-  return <div>test</div>;
+  return <SerongRoutes />;
 }
 
 export default App;
