@@ -1,6 +1,6 @@
 const serongTheme = {
   color: {
-    white: "FFFFFF",
+    white: "#FFFFFF",
     black: "#000000",
     red: "#D0435B",
     grayblue: "#707B85",
