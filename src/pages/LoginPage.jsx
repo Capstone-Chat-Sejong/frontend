@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Serong from "../components/common/Serong";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -58,6 +59,7 @@ const Message = styled.div`
 `;
 
 function LoginPage() {
+  const navigate = useNavigate();
   const idRef = useRef(null);
   const pwdRef = useRef(null);
   const [message, setMessage] = useState(null);
@@ -69,6 +71,7 @@ function LoginPage() {
     }
 
     // TODO 로그인
+    navigate("/chat");
   };
 
   return (
@@ -85,10 +88,10 @@ function LoginPage() {
         </InputArea>
         <InputArea>
           <Label>비밀번호</Label>
-          <Input type="password" />
+          <Input type="password" ref={pwdRef} />
         </InputArea>
         <Message>{message}</Message>
-        <Button type="submit" ref={pwdRef} onClick={loginHandler}>
+        <Button type="submit" onClick={loginHandler}>
           로그인
         </Button>
       </Box>
