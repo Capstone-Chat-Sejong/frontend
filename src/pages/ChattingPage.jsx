@@ -3,6 +3,8 @@ import ChatBallon from "../components/chatting/ChatBallon";
 import InputArea from "../components/chatting/InputArea";
 import Header from "../components/common/Header";
 import { PageContainer } from "../styles/common";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 const dummyData = [
   {
@@ -26,14 +28,22 @@ const dummyData = [
 ];
 
 const ChatPageContainer = styled(PageContainer)`
-  padding-bottom: 50px;
+  margin-bottom: 50px;
+  height: calc(100vh - 50px - 50px);
+  padding-bottom: 20px;
 `;
 
 function ChattingPage() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    containerRef.current.scrollTop = containerRef.current.scrollHeight;
+  }, []); // TODO scroll 이동
+
   return (
     <>
       <Header />
-      <ChatPageContainer>
+      <ChatPageContainer ref={containerRef}>
         {dummyData.map((data) => (
           <ChatBallon isMine={data.isMine} content={data.content} />
         ))}

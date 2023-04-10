@@ -4,6 +4,7 @@ export const GlobalStyle = createGlobalStyle`
   :root {
     overflow-wrap: break-word;
     word-break: break-word;
+    overflow: hidden;
   }
   *,
   *::before,
