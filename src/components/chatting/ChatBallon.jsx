@@ -5,8 +5,10 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: ${(props) => (props.isMine ? "flex-end" : "flex-start")};
-  padding: 10px;
+  padding: 8px 10px;
   gap: 5px;
+
+  font-size: 14px;
 `;
 
 const Ballon = styled.div`
@@ -14,7 +16,7 @@ const Ballon = styled.div`
     props.isMine ? `${props.theme.color.red}99` : props.theme.color.gray};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
   border-radius: 60px;
-  padding: 12px;
+  padding: 8px 10px;
   max-width: 80%;
   word-break: break-all;
 `;
