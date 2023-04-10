@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Serong from "../components/common/Serong";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useToast from "../hooks/useToast";
 
 const Wrapper = styled.div`
   display: flex;
@@ -63,6 +64,7 @@ function LoginPage() {
   const idRef = useRef(null);
   const pwdRef = useRef(null);
   const [message, setMessage] = useState(null);
+  const { addToast } = useToast();
 
   const loginHandler = () => {
     if (!idRef.current.value || !pwdRef.current.value) {
@@ -71,6 +73,7 @@ function LoginPage() {
     }
 
     // TODO 로그인
+    addToast("로그인이 완료되었습니다.");
     navigate("/chat");
   };
 
