@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
   html, 
   body {
     height: 100%;
+    font-weight: 800;
   }
   ul,
   li {

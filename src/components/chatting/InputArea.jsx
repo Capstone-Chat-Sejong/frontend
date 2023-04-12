@@ -7,7 +7,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  width: 87%;
+  width: 80%;
   height: 40px;
   position: fixed;
   margin: 0 auto;
@@ -15,12 +15,13 @@ const Container = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 5px 10px;
+  padding: 5px 15px;
 
   background: ${({ theme }) => theme.color.lightgray};
   box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 `;
+
 const Input = styled.input`
   background-color: ${({ theme }) => theme.color.lightgray};
   flex-grow: 1;

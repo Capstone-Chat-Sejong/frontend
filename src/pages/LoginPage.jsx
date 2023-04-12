@@ -15,6 +15,7 @@ const Wrapper = styled.div`
 const Notice = styled.p`
   padding: 10px 50px;
   text-align: center;
+  font-size: 15px;
 `;
 
 const Box = styled.div`
@@ -52,11 +53,12 @@ const Button = styled.button`
   height: 30px;
   background-color: ${({ theme }) => theme.color.red}99;
   border-radius: 15px;
+  font-size: 13px;
 `;
 
 const Message = styled.div`
-  font-size: 12px;
   color: ${({ theme }) => theme.color.red};
+  font-size: 12px;
 `;
 
 function LoginPage() {

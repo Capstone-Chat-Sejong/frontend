@@ -16,9 +16,10 @@ const Ballon = styled.div`
     props.isMine ? `${props.theme.color.red}99` : props.theme.color.gray};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
   border-radius: 60px;
-  padding: 8px 10px;
-  max-width: 80%;
+  padding: 8px 15px;
+  max-width: 70%;
   word-break: break-all;
+  font-size: 12px;
 `;
 
 function ChatBallon({ isMine, content }) {
