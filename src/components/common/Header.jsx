@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ReactComponent as ProfileIcon } from "../../assets/profileIcon.svg";
 import { ReactComponent as HamburgerIcon } from "../../assets/hamburgerIcon.svg";
 
 const Container = styled.header`
@@ -17,7 +16,9 @@ const Container = styled.header`
 
 const Left = styled.div`
   //TODO 로고?
+  width: 52px;
 `;
+const Center = styled.div``;
 
 const Right = styled.div`
   display: flex;
@@ -25,13 +26,17 @@ const Right = styled.div`
   padding: 0 10px;
 `;
 
-function Header() {
+function Header({ onClickMenu }) {
   return (
     <Container>
       <Left></Left>
+      <Center>Serong</Center>
       <Right>
-        <ProfileIcon width="28px" height="28px" />
-        <HamburgerIcon width="32px" height="32px" />
+        <HamburgerIcon
+          width="32px"
+          height="32px"
+          onClick={() => onClickMenu()}
+        />
       </Right>
     </Container>
   );

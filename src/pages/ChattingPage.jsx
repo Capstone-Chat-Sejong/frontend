@@ -3,8 +3,8 @@ import ChatBallon from "../components/chatting/ChatBallon";
 import InputArea from "../components/chatting/InputArea";
 import Header from "../components/common/Header";
 import { PageContainer } from "../styles/common";
-import { useRef } from "react";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
+import BottomSheet from "../components/common/BottomSheet";
 
 const dummyData = [
   {
@@ -35,6 +35,7 @@ const ChatPageContainer = styled(PageContainer)`
 
 function ChattingPage() {
   const containerRef = useRef(null);
+  const [onBottomSheet, setOnBottomSheet] = useState(false);
 
   useEffect(() => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
@@ -42,7 +43,7 @@ function ChattingPage() {
 
   return (
     <>
-      <Header />
+      <Header onClickMenu={() => setOnBottomSheet(true)} />
       <ChatPageContainer ref={containerRef}>
         {dummyData.map((data) => (
           <ChatBallon isMine={data.isMine} content={data.content} />
@@ -54,6 +55,10 @@ function ChattingPage() {
           }}
         />
       </ChatPageContainer>
+      <BottomSheet
+        onBottomSheet={onBottomSheet}
+        setOnBottomSheet={setOnBottomSheet}
+      />
     </>
   );
 }
