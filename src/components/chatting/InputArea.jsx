@@ -18,8 +18,8 @@ const Container = styled.div`
   padding: 5px 15px;
 
   background: ${({ theme }) => theme.color.lightgray};
-  box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.25);
-  border-radius: 30px;
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
 `;
 
 const Input = styled.input`

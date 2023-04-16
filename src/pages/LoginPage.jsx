@@ -29,28 +29,17 @@ const Box = styled.div`
   margin: auto 0;
 `;
 
-const Label = styled.label`
-  font-size: 12px;
-`;
-
-const InputArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  width: 230px;
-`;
-
 const Input = styled.input`
   width: 230px;
-  height: 28px;
+  height: 33px;
   padding: 0 10px;
-  background-color: ${({ theme }) => theme.color.gray};
-  border-radius: 15px;
+  background-color: ${({ theme }) => theme.color.lightgray};
+  border-radius: 10px;
 `;
 
 const Button = styled.button`
-  width: 160px;
-  height: 30px;
+  width: 180px;
+  height: 35px;
   background-color: ${({ theme }) => theme.color.red}99;
   border-radius: 15px;
   font-size: 13px;
@@ -84,17 +73,11 @@ function LoginPage() {
       <Box>
         <Serong size="50px" />
         <Notice>
-          세종대 홈페이지 로그인을 위한 학번과
-          <br /> 비밀번호를 사용해 로그인 하실 수 있습니다.
+          세종대 홈페이지 로그인을 위한 학번과 비밀번호를 사용해 로그인 하실 수
+          있습니다.
         </Notice>
-        <InputArea>
-          <Label>학번</Label>
-          <Input type="text" ref={idRef} />
-        </InputArea>
-        <InputArea>
-          <Label>비밀번호</Label>
-          <Input type="password" ref={pwdRef} />
-        </InputArea>
+        <Input type="text" ref={idRef} placeholder="학번" />
+        <Input type="password" ref={pwdRef} placeholder="비밀번호" />
         <Message>{message}</Message>
         <Button type="submit" onClick={loginHandler}>
           로그인
