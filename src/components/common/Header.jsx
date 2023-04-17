@@ -18,7 +18,9 @@ const Left = styled.div`
   //TODO 로고?
   width: 52px;
 `;
-const Center = styled.div``;
+const Center = styled.div`
+  font-weight: 600;
+`;
 
 const Right = styled.div`
   display: flex;

@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
   *,
   *::before,
   *::after {  
-    font-family: S-CoreDream-3Light;
+    font-family: Noto Sans KR, sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0; 
@@ -17,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
   html, 
   body {
     height: 100%;
-    font-weight: 800;
+
   }
   ul,
   li {
