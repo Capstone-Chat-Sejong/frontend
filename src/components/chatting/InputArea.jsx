@@ -1,20 +1,31 @@
 import styled from "styled-components";
 import { ReactComponent as SendIcon } from "../../assets/sendIcon.svg";
 import { useRef } from "react";
+import QuickButtonContainer from "./QuickButtonContainer";
+import QuickButton from "./QuickButton";
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
 
-  width: 80%;
-  height: 40px;
+  width: 85%;
   position: fixed;
   margin: 0 auto;
   margin-bottom: 20px;
   left: 0;
   right: 0;
   bottom: 0;
+  gap: 12px;
+`;
+
+const InputContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 40px;
   padding: 5px 15px;
 
   background: ${({ theme }) => theme.color.lightgray};
@@ -38,8 +49,20 @@ function InputArea({ onSend }) {
 
   return (
     <Container>
-      <Input ref={inputRef} />
-      <SendIcon width="26px" height="26px" onClick={clickSendHandler} />
+      <QuickButtonContainer>
+        <QuickButton value="이번 달 학사일정" onClick={() => {}} />
+        <QuickButton value="우리학교 지도" onClick={() => {}} />
+        <QuickButton value="이번 달 학사일정" onClick={() => {}} />
+        <QuickButton value="우리학교 지도" onClick={() => {}} />
+        <QuickButton value="이번 달 학사일정" onClick={() => {}} />
+        <QuickButton value="우리학교 지도" onClick={() => {}} />
+        <QuickButton value="이번 달 학사일정" onClick={() => {}} />
+        <QuickButton value="우리학교 지도" onClick={() => {}} />
+      </QuickButtonContainer>
+      <InputContainer>
+        <Input ref={inputRef} />
+        <SendIcon width="26px" height="26px" onClick={clickSendHandler} />
+      </InputContainer>
     </Container>
   );
 }
