@@ -3,6 +3,7 @@ import Serong from "../components/common/Serong";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useToast from "../hooks/useToast";
+import { USER_API } from "../services/api/user";
 
 const Wrapper = styled.div`
   display: flex;
@@ -64,9 +65,17 @@ function LoginPage() {
       return;
     }
 
-    // TODO 로그인
-    addToast("로그인이 완료되었습니다.");
-    navigate("/chat");
+    USER_API.login(idRef.current.value, pwdRef.current.value)
+      .then((data) => {
+        localStorage.setItem("access_token", data.access_token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        addToast("로그인이 완료되었습니다.");
+        navigate("/chat");
+      })
+      .catch((err) => {
+        if (err.response.status === 401)
+          setMessage("아이디와 비밀번호가 일치하지 않습니다.");
+      });
   };
 
   return (
