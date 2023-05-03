@@ -66,6 +66,7 @@ function InputArea({ onSend }) {
           width="20"
           height="20"
           color=" #d0435b"
+          onClick={clickSendHandler}
         />
       </InputContainer>
     </Container>
