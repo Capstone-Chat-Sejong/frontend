@@ -45,6 +45,7 @@ const Button = styled.button`
   border-radius: 15px;
   color: black;
   font-size: 13px;
+  box-shadow: 0px 4px 0px #ce6375db;
 `;
 
 const Message = styled.div`

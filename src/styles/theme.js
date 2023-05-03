@@ -10,6 +10,7 @@ const serongTheme = {
     thumbOrange: "#FC7E63",
     gray: "#D9D9D9",
     lightgray: "#F5F5F5",
+    lightpink: "#F1E9E9",
   },
 };
 

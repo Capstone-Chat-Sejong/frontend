@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as SendIcon } from "../../assets/sendIcon.svg";
+import { Icon } from "@iconify/react";
 import { useRef } from "react";
 import QuickButtonContainer from "./QuickButtonContainer";
 import QuickButton from "./QuickButton";
@@ -61,7 +61,12 @@ function InputArea({ onSend }) {
       </QuickButtonContainer>
       <InputContainer>
         <Input ref={inputRef} />
-        <SendIcon width="26px" height="26px" onClick={clickSendHandler} />
+        <Icon
+          icon="streamline:computer-keyboard-return-3-enter-return-keyboard"
+          width="20"
+          height="20"
+          color=" #d0435b"
+        />
       </InputContainer>
     </Container>
   );

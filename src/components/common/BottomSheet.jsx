@@ -21,7 +21,7 @@ const Sheet = styled.div`
   flex-direction: column;
   padding: 15px 15px;
   gap: 10px;
-  background-color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.lightpink};
   font-size: 13px;
 
   border-radius: 20px 20px 0 0;
@@ -46,7 +46,6 @@ const Info = styled.div`
   width: 100%;
   height: 120px;
   border-radius: 20px;
-  border: 1px solid ${({ theme }) => theme.color.gray};
 `;
 
 const InfoTitle = styled.div`

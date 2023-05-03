@@ -1,8 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { ReactComponent as CheckIcon } from "../../assets/check.svg";
-import { ReactComponent as NoticeIcon } from "../../assets/notice.svg";
+import { Icon } from "@iconify/react";
 import { useContext } from "react";
 import ToastContext from "./ToastContext";
 
@@ -53,7 +52,17 @@ function ToastMessage({ message, type }) {
     <>
       {ReactDOM.createPortal(
         <Toast>
-          {type === "NOTICE" ? <NoticeIcon /> : <CheckIcon />}
+          <Icon
+            icon={
+              type === "NOTICE"
+                ? "material-symbols:check-circle"
+                : "material-symbols:error"
+            }
+            color={type === "NOTICE" ? "#4ecc71" : "#D81F1F"}
+            width="26"
+            height="26"
+          />
+
           {message}
         </Toast>,
         document.getElementById("toast-message-root")

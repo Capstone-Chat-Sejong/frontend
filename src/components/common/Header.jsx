@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as HamburgerIcon } from "../../assets/hamburgerIcon.svg";
+import { Icon } from "@iconify/react";
 
 const Container = styled.header`
   position: fixed;
@@ -10,8 +10,10 @@ const Container = styled.header`
   align-items: center;
   width: 100%;
   height: 45px;
+  border-radius: 0 0 10px 10px;
   border-bottom: 1px solid ${({ theme }) => theme.color.gray};
-  background-color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.red};
+  color: white;
 `;
 
 const Left = styled.div`
@@ -34,9 +36,10 @@ function Header({ onClickMenu }) {
       <Left></Left>
       <Center>Serong</Center>
       <Right>
-        <HamburgerIcon
-          width="32px"
-          height="32px"
+        <Icon
+          icon="pajamas:hamburger"
+          width="23"
+          height="23"
           onClick={() => onClickMenu()}
         />
       </Right>
