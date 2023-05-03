@@ -65,9 +65,15 @@ const Option = styled.div`
   border: 1px solid ${({ theme }) => theme.color.gray};
 `;
 
-function BottomSheet({ onBottomSheet, setOnBottomSheet }) {
-  if (!onBottomSheet) return null;
+function BottomSheet({
+  onBottomSheet,
+  setOnBottomSheet,
+  onLogout,
+  onResetChattting,
+}) {
+  const userInfo = JSON.parse(localStorage.getItem("user"));
 
+  if (!onBottomSheet) return null;
   return (
     <>
       {ReactDOM.createPortal(
@@ -76,11 +82,11 @@ function BottomSheet({ onBottomSheet, setOnBottomSheet }) {
           <Sheet>
             <Info>
               <InfoTitle>로그인 정보</InfoTitle>
-              <div>학과 학번 이름</div>
-              <div>재학 상태</div>
+              <div>{`${userInfo.id} ${userInfo.name}`}</div>
+              <div>{`${userInfo.major} ${userInfo.grade}학년 ${userInfo.status}중`}</div>
             </Info>
-            <Option>로그아웃</Option>
-            <Option>대화 내역 초기화</Option>
+            <Option onClick={onLogout}>로그아웃</Option>
+            <Option onClick={onResetChattting}>대화 내역 초기화</Option>
             <Option onClick={() => setOnBottomSheet(false)}>취소</Option>
           </Sheet>
         </>,
