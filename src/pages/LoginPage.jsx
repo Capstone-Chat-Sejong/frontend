@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useToast from "../hooks/useToast";
 import { USER_API } from "../services/api/user";
+import { Icon } from "@iconify/react";
 
 const Wrapper = styled.div`
   display: flex;
@@ -52,12 +53,23 @@ const Message = styled.div`
   color: ${({ theme }) => theme.color.red};
   font-size: 12px;
 `;
+const LoadingBallon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 30px;
+  background-color: white;
+  border-radius: 20px 20px 20px 0;
+  margin-left: 80px;
+`;
 
 function LoginPage() {
   const navigate = useNavigate();
   const idRef = useRef(null);
   const pwdRef = useRef(null);
   const [message, setMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { addToast } = useToast();
 
   const loginHandler = () => {
@@ -66,11 +78,13 @@ function LoginPage() {
       return;
     }
 
+    setLoading(true);
     USER_API.login(idRef.current.value, pwdRef.current.value)
       .then((data) => {
         localStorage.setItem("access_token", data.access_token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        addToast("로그인이 완료되었습니다.");
+        setLoading(false);
+        addToast("로그인이 완료되었습니다.", "NOTICE");
         navigate("/chat");
       })
       .catch((err) => {
@@ -82,6 +96,11 @@ function LoginPage() {
   return (
     <Wrapper>
       <Box>
+        {loading && (
+          <LoadingBallon>
+            <Icon icon="eos-icons:three-dots-loading" width={35} height={35} />
+          </LoadingBallon>
+        )}
         <Serong size="50px" />
         <Notice>
           세종대 홈페이지 로그인을 위한 학번과 비밀번호를 사용해 로그인 하실 수
