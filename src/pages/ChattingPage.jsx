@@ -69,7 +69,11 @@ function ChattingPage() {
       <Header onClickMenu={() => setOnBottomSheet(true)} />
       <ChatPageContainer ref={containerRef}>
         {chatData.map((data) => (
-          <ChatBallon isMine={data.isMine} content={data.content} />
+          <ChatBallon
+            isMine={data.isMine}
+            content={data.content}
+            type={data.type}
+          />
         ))}
         {isLoading && (
           <IconArea>

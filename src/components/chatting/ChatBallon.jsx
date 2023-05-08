@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Serong from "../common/Serong";
 import { Icon } from "@iconify/react";
+import Calendar from "../calendar/Calendar";
 
 const Container = styled.div`
   display: flex;
@@ -34,13 +35,14 @@ const Feedback = styled.div`
   padding: 0 5px;
 `;
 
-function ChatBallon({ isMine, content }) {
+function ChatBallon({ isMine, content, type }) {
   return (
     <Container isMine={isMine}>
       {!isMine && <Serong size="45px" />}
       <BallonBox>
         <Ballon isMine={isMine}>
           {content}
+          {type === "CALENDAR" && <Calendar />}
           {!isMine &&
             false && ( // TODO 피드백 받을 만한 정보일 때만, 클릭시 fill
               <Feedback>
