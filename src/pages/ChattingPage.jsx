@@ -8,12 +8,14 @@ import { useNavigate } from "react-router-dom";
 import BottomSheet from "../components/common/BottomSheet";
 import { serongSocket } from "../services/socket";
 import { Icon } from "@iconify/react";
+import { ChatContext } from "../components/chatting/ChatProvider";
 import { CHAT_PROCESSOR } from "../utils/chat";
+import Greeting from "../components/chatting/contents/Greeting";
 
 const ChatPageContainer = styled(PageContainer)`
   margin-bottom: 85px;
   height: calc(100vh - 50px - 85px);
-  padding-bottom: 20px;
+  padding-bottom: 250px;
 `;
 
 const IconArea = styled.div`
@@ -31,11 +33,13 @@ function ChattingPage() {
   const navigate = useNavigate();
   const [chatData, setChatData] = useState([
     {
-      type: "GREETING",
       isMine: false,
-      content: CHAT_PROCESSOR.greeting(
-        JSON.parse(localStorage.getItem("user")).name
-      ),
+      props: {
+        content: CHAT_PROCESSOR.greeting(
+          JSON.parse(localStorage.getItem("user")).name
+        ),
+      },
+      component: (props) => <Greeting {...props} />,
     },
   ]);
 
@@ -53,7 +57,7 @@ function ChattingPage() {
       setIsLoading(false);
       setChatData((prevData) => [
         ...prevData,
-        { isMine: false, content: CHAT_PROCESSOR.general(data.msg) },
+        { isMine: false, component: () => CHAT_PROCESSOR.general(data.msg) },
       ]);
     });
 
@@ -68,13 +72,18 @@ function ChattingPage() {
     <>
       <Header onClickMenu={() => setOnBottomSheet(true)} />
       <ChatPageContainer ref={containerRef}>
-        {chatData.map((data) => (
-          <ChatBallon
-            isMine={data.isMine}
-            content={data.content}
-            type={data.type}
-          />
-        ))}
+        <ChatContext.Provider
+          value={{
+            chats: chatData,
+            addChat: (chat) => setChatData((chats) => [...chats, chat]),
+          }}
+        >
+          {chatData.map((data) => (
+            <ChatBallon isMine={data.isMine}>
+              {data.component(data.props)}
+            </ChatBallon>
+          ))}
+        </ChatContext.Provider>
         {isLoading && (
           <IconArea>
             <Icon
@@ -89,14 +98,13 @@ function ChattingPage() {
           onSend={(data) => {
             setChatData((prevData) => [
               ...prevData,
-              { isMine: true, content: data },
+              { isMine: true, component: () => data },
             ]);
             setIsLoading(true);
             serongSocket.socket.emit("sendreply", { input: data });
           }}
         />
       </ChatPageContainer>
-
       <BottomSheet
         onBottomSheet={onBottomSheet}
         setOnBottomSheet={setOnBottomSheet}
