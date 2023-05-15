@@ -6,7 +6,7 @@ import { PageContainer } from "../styles/common";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import BottomSheet from "../components/common/BottomSheet";
-import { socket } from "../services/socket";
+import { serongSocket } from "../services/socket";
 import { Icon } from "@iconify/react";
 import { CHAT_PROCESSOR } from "../utils/chat";
 
@@ -29,9 +29,9 @@ function ChattingPage() {
   const [onBottomSheet, setOnBottomSheet] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
   const [chatData, setChatData] = useState([
     {
+      type: "GREETING",
       isMine: false,
       content: CHAT_PROCESSOR.greeting(
         JSON.parse(localStorage.getItem("user")).name
@@ -44,12 +44,12 @@ function ChattingPage() {
   }, [chatData]);
 
   useEffect(() => {
-    socket.on("connect", () => {
+    serongSocket.socket.on("connect", () => {
       console.log("connect");
     });
 
-    socket.emit("loggedin", {});
-    socket.on("reply", (data) => {
+    serongSocket.socket.emit("loggedin", {});
+    serongSocket.socket.on("reply", (data) => {
       setIsLoading(false);
       setChatData((prevData) => [
         ...prevData,
@@ -58,9 +58,9 @@ function ChattingPage() {
     });
 
     return () => {
-      socket.off("connect");
-      socket.off("reply");
-      socket.off("loggedin");
+      serongSocket.socket.off("connect");
+      serongSocket.socket.off("reply");
+      serongSocket.socket.off("loggedin");
     };
   }, []);
 
@@ -92,10 +92,11 @@ function ChattingPage() {
               { isMine: true, content: data },
             ]);
             setIsLoading(true);
-            socket.emit("sendreply", { input: data });
+            serongSocket.socket.emit("sendreply", { input: data });
           }}
         />
       </ChatPageContainer>
+
       <BottomSheet
         onBottomSheet={onBottomSheet}
         setOnBottomSheet={setOnBottomSheet}
