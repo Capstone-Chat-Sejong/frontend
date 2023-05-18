@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
+import { iconMapper } from "../../utils/iconMapper";
 
 const Button = styled.button`
   aspect-ratio: calc(1 / 1);
@@ -18,7 +19,11 @@ const Button = styled.button`
 function QuickButton({ value, onClick }) {
   return (
     <Button onClick={(e) => onClick(e)}>
-      <Icon icon="material-symbols:local-cafe" color="#d0435b" width="25" />
+      <Icon
+        icon={iconMapper[value.replace(/\s+/g, "")]}
+        color="#d0435b"
+        width="27"
+      />
       {value}
     </Button>
   );

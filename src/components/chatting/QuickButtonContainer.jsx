@@ -26,57 +26,72 @@ const Container = styled.div`
 
 function QuickButtonContainer({ children }) {
   const ctx = useContext(ChatContext);
+  const addMyChat = (v) => {
+    ctx.addChat({
+      isMine: true,
+      props: {},
+      component: () => v,
+    });
+  };
   return (
     <Container>
       {children}
       <QuickButton
         value="학사 일정"
-        onClick={() =>
+        onClick={() => {
+          addMyChat("학사일정");
           ctx.addChat({
             props: {},
             component: () => <Calendar />,
-          })
-        }
+          });
+        }}
       />
       <QuickButton
         value="학과 정보"
-        onClick={() =>
+        onClick={() => {
+          addMyChat("학과 정보");
           ctx.addChat({
             props: {},
             component: () => <MajorInfo />,
-          })
-        }
+          });
+        }}
       />
       <QuickButton
         value="졸업 요건"
-        onClick={() =>
+        onClick={() => {
+          addMyChat("졸업 요건");
           ctx.addChat({
             props: {},
             component: () => <GraduateInfo />,
-          })
-        }
+          });
+        }}
       />
       <QuickButton
         value="교내 지도"
-        onClick={() => ctx.addChat({ props: {}, component: () => <MapInfo /> })}
+        onClick={() => {
+          addMyChat("교내 지도");
+          ctx.addChat({ props: {}, component: () => <MapInfo /> });
+        }}
       />
       <QuickButton
         value="편의 시설"
-        onClick={() =>
+        onClick={() => {
+          addMyChat("편의 시설");
           ctx.addChat({
             props: {},
             component: () => <FacilityInfo />,
-          })
-        }
+          });
+        }}
       />
       <QuickButton
         value="오늘 날씨"
-        onClick={() =>
+        onClick={() => {
+          addMyChat("오늘 날씨");
           ctx.addChat({
             props: {},
             component: () => <WeatherInfo />,
-          })
-        }
+          });
+        }}
       />
     </Container>
   );
