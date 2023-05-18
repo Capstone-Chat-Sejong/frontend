@@ -14,7 +14,7 @@ import Greeting from "../components/chatting/contents/Greeting";
 
 const ChatPageContainer = styled(PageContainer)`
   margin-bottom: 85px;
-  height: calc(100vh - 50px - 85px);
+  height: calc(100vh - 50px - 55px);
   padding-bottom: 250px;
 `;
 

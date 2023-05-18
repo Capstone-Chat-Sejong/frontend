@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import { useRef } from "react";
-import QuickButtonContainer from "./QuickButtonContainer";
-import QuickButton from "./QuickButton";
 
 const Container = styled.div`
   display: flex;
@@ -35,6 +33,7 @@ const InputContainer = styled.div`
 
 const Input = styled.input`
   background-color: ${({ theme }) => theme.color.lightgray};
+  width: 80%;
   flex-grow: 1;
   padding: 5px;
 `;
@@ -49,16 +48,6 @@ function InputArea({ onSend }) {
 
   return (
     <Container>
-      <QuickButtonContainer>
-        <QuickButton value="이번 달 학사일정" onClick={() => {}} />
-        <QuickButton value="우리학교 지도" onClick={() => {}} />
-        <QuickButton value="이번 달 학사일정" onClick={() => {}} />
-        <QuickButton value="우리학교 지도" onClick={() => {}} />
-        <QuickButton value="이번 달 학사일정" onClick={() => {}} />
-        <QuickButton value="우리학교 지도" onClick={() => {}} />
-        <QuickButton value="이번 달 학사일정" onClick={() => {}} />
-        <QuickButton value="우리학교 지도" onClick={() => {}} />
-      </QuickButtonContainer>
       <InputContainer>
         <Input ref={inputRef} />
         <Icon
