@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Serong from "../common/Serong";
 import { Icon } from "@iconify/react";
-import Calendar from "../calendar/Calendar";
 
 const Container = styled.div`
   display: flex;
@@ -34,33 +33,37 @@ const Feedback = styled.div`
   gap: 6px;
   padding: 0 5px;
 `;
-
-function ChatBallon({ isMine, content, type }) {
+const SlideContainer = styled.div`
+  width: calc(100% - 45px);
+`;
+function ChatBallon({ isMine, type, children }) {
   return (
     <Container isMine={isMine}>
       {!isMine && <Serong size="45px" />}
+      {type === "SLIDER" && <SlideContainer>{children}</SlideContainer>}
       <BallonBox>
-        <Ballon isMine={isMine}>
-          {content}
-          {type === "CALENDAR" && <Calendar />}
-          {!isMine &&
-            false && ( // TODO 피드백 받을 만한 정보일 때만, 클릭시 fill
-              <Feedback>
-                <Icon
-                  icon="bi:hand-thumbs-up"
-                  color="red"
-                  width="14"
-                  height="14"
-                />
-                <Icon
-                  icon="bi:hand-thumbs-down"
-                  color="blue"
-                  width="14"
-                  height="14"
-                />
-              </Feedback>
-            )}
-        </Ballon>
+        {type !== "SLIDER" && (
+          <Ballon isMine={isMine}>
+            {children}
+            {!isMine &&
+              false && ( // TODO 피드백 받을 만한 정보일 때만, 클릭시 fill
+                <Feedback>
+                  <Icon
+                    icon="bi:hand-thumbs-up"
+                    color="red"
+                    width="14"
+                    height="14"
+                  />
+                  <Icon
+                    icon="bi:hand-thumbs-down"
+                    color="blue"
+                    width="14"
+                    height="14"
+                  />
+                </Feedback>
+              )}
+          </Ballon>
+        )}
       </BallonBox>
     </Container>
   );

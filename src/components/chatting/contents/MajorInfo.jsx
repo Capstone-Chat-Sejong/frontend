@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { QUICK_API } from "../../../services/api/quick";
 import styled from "styled-components";
 import { ChatContext } from "../ChatProvider";
+import Detail from "./Detail";
 
 const MajorBtn = styled.button`
   width: 47%;
@@ -54,7 +55,7 @@ function SubMajorInfo({ major }) {
 
                 ctx.addChat({
                   isMine: false,
-                  component: () => res.content,
+                  component: () => <Detail content={res.content} />,
                 });
               }}
             >
@@ -84,6 +85,10 @@ function MajorInfo() {
             <MajorBtn
               value={s.value}
               onClick={() => {
+                ctx.addChat({
+                  isMine: true,
+                  component: () => s.value,
+                });
                 ctx.addChat({
                   isMine: false,
                   component: () => <SubMajorInfo major={s.value} />,

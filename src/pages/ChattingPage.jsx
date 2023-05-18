@@ -31,6 +31,7 @@ function ChattingPage() {
   const [onBottomSheet, setOnBottomSheet] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
   const [chatData, setChatData] = useState([
     {
       isMine: false,
@@ -62,6 +63,7 @@ function ChattingPage() {
     });
 
     return () => {
+      serongSocket.socket.on("disconnect");
       serongSocket.socket.off("connect");
       serongSocket.socket.off("reply");
       serongSocket.socket.off("loggedin");
@@ -79,7 +81,7 @@ function ChattingPage() {
           }}
         >
           {chatData.map((data) => (
-            <ChatBallon isMine={data.isMine}>
+            <ChatBallon isMine={data.isMine} type={data.type}>
               {data.component(data.props)}
             </ChatBallon>
           ))}
