@@ -8,4 +8,11 @@ export const USER_API = {
     });
     return res.data;
   },
+  logout: async () => {
+    const res = await axios.delete(
+      `${process.env.REACT_APP_SERVER_URL}/logout`
+    );
+
+    return res;
+  },
 };

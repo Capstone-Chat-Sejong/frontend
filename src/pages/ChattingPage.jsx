@@ -11,6 +11,8 @@ import { Icon } from "@iconify/react";
 import { ChatContext } from "../components/chatting/ChatProvider";
 import { CHAT_PROCESSOR } from "../utils/chat";
 import Greeting from "../components/chatting/contents/Greeting";
+import { USER_API } from "../services/api/user";
+import useToast from "../hooks/useToast";
 
 const ChatPageContainer = styled(PageContainer)`
   margin-bottom: 85px;
@@ -31,6 +33,7 @@ function ChattingPage() {
   const [onBottomSheet, setOnBottomSheet] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { addToast } = useToast();
 
   const [chatData, setChatData] = useState([
     {
@@ -49,21 +52,20 @@ function ChattingPage() {
   }, [chatData]);
 
   useEffect(() => {
+    serongSocket.socket.connect();
     serongSocket.socket.on("connect", () => {
       console.log("connect");
-    });
-
-    serongSocket.socket.emit("loggedin", {});
-    serongSocket.socket.on("reply", (data) => {
-      setIsLoading(false);
-      setChatData((prevData) => [
-        ...prevData,
-        { isMine: false, component: () => CHAT_PROCESSOR.general(data.msg) },
-      ]);
+      serongSocket.socket.emit("loggedin", {});
+      serongSocket.socket.on("reply", (data) => {
+        setIsLoading(false);
+        setChatData((prevData) => [
+          ...prevData,
+          { isMine: false, component: () => CHAT_PROCESSOR.general(data.msg) },
+        ]);
+      });
     });
 
     return () => {
-      serongSocket.socket.on("disconnect");
       serongSocket.socket.off("connect");
       serongSocket.socket.off("reply");
       serongSocket.socket.off("loggedin");
@@ -103,14 +105,18 @@ function ChattingPage() {
               { isMine: true, component: () => data },
             ]);
             setIsLoading(true);
-            serongSocket.socket.emit("sendreply", { input: data });
+            serongSocket.socket.emit("sendtext", { input: data });
           }}
         />
       </ChatPageContainer>
       <BottomSheet
         onBottomSheet={onBottomSheet}
         setOnBottomSheet={setOnBottomSheet}
-        onLogout={() => navigate("/login")}
+        onLogout={() => {
+          USER_API.logout();
+          addToast("로그아웃 되었습니다.", "NOTICE");
+          navigate("/login");
+        }}
       />
     </>
   );
