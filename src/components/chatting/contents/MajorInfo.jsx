@@ -55,7 +55,7 @@ function SubMajorInfo({ major }) {
 
                 ctx.addChat({
                   isMine: false,
-                  component: () => <Detail content={res.content} />,
+                  component: () => <Detail content={res.output} />,
                 });
               }}
             >

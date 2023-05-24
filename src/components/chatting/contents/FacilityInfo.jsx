@@ -45,7 +45,7 @@ function FacilityInfo() {
               ctx.addChat({
                 type: "SLIDER",
                 isMine: false,
-                component: () => <Slider content={result.content} />,
+                component: () => <Slider content={result.output} />,
               });
             }}
           />
