@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
 import styled, { keyframes } from "styled-components";
+import useToast from "../../hooks/useToast";
 
 const fadeInUp = keyframes`
     0% {
@@ -71,6 +72,7 @@ function BottomSheet({
   onResetChattting,
 }) {
   const userInfo = JSON.parse(localStorage.getItem("user"));
+  const { addToast } = useToast();
 
   if (!onBottomSheet) return null;
   return (
@@ -85,7 +87,15 @@ function BottomSheet({
               <div>{`${userInfo.major} ${userInfo.grade}학년 ${userInfo.status}중`}</div>
             </Info>
             <Option onClick={onLogout}>로그아웃</Option>
-            <Option onClick={onResetChattting}>대화 내역 초기화</Option>
+            <Option
+              onClick={() => {
+                onResetChattting();
+                setOnBottomSheet(false);
+                addToast("초기화되었습니다", "NOTICE");
+              }}
+            >
+              대화 내역 초기화
+            </Option>
             <Option onClick={() => setOnBottomSheet(false)}>취소</Option>
           </Sheet>
         </>,

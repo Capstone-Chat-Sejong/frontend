@@ -34,6 +34,7 @@ function ChattingPage() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { addToast } = useToast();
+  const socket = serongSocket.getSocket(localStorage.getItem("access_token"));
 
   const [chatData, setChatData] = useState([
     {
@@ -52,11 +53,11 @@ function ChattingPage() {
   }, [chatData]);
 
   useEffect(() => {
-    serongSocket.socket.connect();
-    serongSocket.socket.on("connect", () => {
+    socket.connect();
+    socket.on("connect", () => {
       console.log("connect");
-      serongSocket.socket.emit("loggedin", {});
-      serongSocket.socket.on("reply", (data) => {
+      socket.emit("loggedin", {});
+      socket.on("reply", (data) => {
         setIsLoading(false);
         setChatData((prevData) => [
           ...prevData,
@@ -66,9 +67,9 @@ function ChattingPage() {
     });
 
     return () => {
-      serongSocket.socket.off("connect");
-      serongSocket.socket.off("reply");
-      serongSocket.socket.off("loggedin");
+      socket.off("connect");
+      socket.off("reply");
+      socket.off("loggedin");
     };
   }, []);
 
@@ -82,8 +83,12 @@ function ChattingPage() {
             addChat: (chat) => setChatData((chats) => [...chats, chat]),
           }}
         >
-          {chatData.map((data) => (
-            <ChatBallon isMine={data.isMine} type={data.type}>
+          {chatData.map((data, i) => (
+            <ChatBallon
+              isMine={data.isMine}
+              type={data.type}
+              key={`${data.props}${i}`}
+            >
               {data.component(data.props)}
             </ChatBallon>
           ))}
@@ -105,13 +110,26 @@ function ChattingPage() {
               { isMine: true, component: () => data },
             ]);
             setIsLoading(true);
-            serongSocket.socket.emit("sendtext", { input: data });
+            socket.emit("sendreply", { input: data });
           }}
         />
       </ChatPageContainer>
       <BottomSheet
         onBottomSheet={onBottomSheet}
         setOnBottomSheet={setOnBottomSheet}
+        onResetChattting={() =>
+          setChatData([
+            {
+              isMine: false,
+              props: {
+                content: CHAT_PROCESSOR.greeting(
+                  JSON.parse(localStorage.getItem("user")).name
+                ),
+              },
+              component: (props) => <Greeting {...props} />,
+            },
+          ])
+        }
         onLogout={() => {
           USER_API.logout();
           addToast("로그아웃 되었습니다.", "NOTICE");
