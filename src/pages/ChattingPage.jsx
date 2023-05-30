@@ -3,10 +3,10 @@ import ChatBallon from "../components/chatting/ChatBallon";
 import InputArea from "../components/chatting/InputArea";
 import Header from "../components/common/Header";
 import { PageContainer } from "../styles/common";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import BottomSheet from "../components/common/BottomSheet";
-import { serongSocket } from "../services/socket";
+import { getSocket } from "../services/socket";
 import { Icon } from "@iconify/react";
 import { ChatContext } from "../components/chatting/ChatProvider";
 import { CHAT_PROCESSOR } from "../utils/chat";
@@ -17,7 +17,19 @@ import useToast from "../hooks/useToast";
 const ChatPageContainer = styled(PageContainer)`
   margin-bottom: 85px;
   height: calc(100vh - 50px - 55px);
-  padding-bottom: 250px;
+  padding-bottom: 220px;
+  margin-top: 45px;
+`;
+
+const Page = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  max-width: 600px;
+  background-color: #f1e9e9;
 `;
 
 const IconArea = styled.div`
@@ -34,7 +46,7 @@ function ChattingPage() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { addToast } = useToast();
-  const socket = serongSocket.getSocket(localStorage.getItem("access_token"));
+  const socket = useMemo(() => getSocket(), []);
 
   const [chatData, setChatData] = useState([
     {
@@ -71,10 +83,10 @@ function ChattingPage() {
       socket.off("reply");
       socket.off("loggedin");
     };
-  }, []);
+  }, [socket]);
 
   return (
-    <>
+    <Page>
       <Header onClickMenu={() => setOnBottomSheet(true)} />
       <ChatPageContainer ref={containerRef}>
         <ChatContext.Provider
@@ -136,7 +148,7 @@ function ChattingPage() {
           navigate("/login");
         }}
       />
-    </>
+    </Page>
   );
 }
 

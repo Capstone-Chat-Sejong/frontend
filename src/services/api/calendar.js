@@ -1,8 +1,8 @@
-import request from "../instance";
+import { request } from "../instance";
 
 const CALENDAR_API = {
   addPlan: async (scheduleObj) => {
-    const res = await request.post(
+    const res = await request().post(
       `${process.env.REACT_APP_SERVER_URL}/button/click/schedule`,
       {
         ...scheduleObj,
@@ -11,18 +11,26 @@ const CALENDAR_API = {
     );
     return res.data;
   },
-  getPlans: async (scheduleObj) => {
-    const res = await request.post(
+  getPlans: async (today) => {
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const date = today.getDate();
+
+    const res = await request().post(
       `${process.env.REACT_APP_SERVER_URL}/button/click/schedule`,
       {
-        ...scheduleObj,
         btn_title: "일정 확인",
+        start: `${year}-${month >= 10 ? month : "0" + month}-${
+          date >= 10 ? date : "0" + date
+        }`,
       }
     );
-    return res.data;
+    const output = res.data.output.split("\n");
+
+    return output.slice(1);
   },
   getUnivPlan: async () => {
-    const res = await request.post(
+    const res = await request().post(
       `${process.env.REACT_APP_SERVER_URL}/button/click/univschedule`,
       {
         btn_title: "학사 일정",
