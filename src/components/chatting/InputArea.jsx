@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import { useRef } from "react";
+import ScheduleButton from "./ScheduleButton";
 
 const Container = styled.div`
   display: flex;
@@ -8,7 +9,7 @@ const Container = styled.div`
   justify-content: flex-start;
 
   width: 85%;
-  position: fixed;
+  position: absolute;
   margin: 0 auto;
   margin-bottom: 20px;
   left: 0;
@@ -48,6 +49,7 @@ function InputArea({ onSend }) {
 
   return (
     <Container>
+      <ScheduleButton />
       <InputContainer>
         <Input ref={inputRef} />
         <Icon
