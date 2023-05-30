@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import Serong from "../components/common/Serong";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useToast from "../hooks/useToast";
 import { USER_API } from "../services/api/user";
 import { Icon } from "@iconify/react";
+import serongMoving from "../assets/serong_move.gif";
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background-color: ${({ theme }) => theme.color.lightpink};
 `;
 
 const Notice = styled.p`
@@ -63,7 +64,10 @@ const LoadingBallon = styled.div`
   border-radius: 20px 20px 20px 0;
   margin-left: 80px;
 `;
-
+const Img = styled.img`
+  width: 80px;
+  height: 80px;
+`;
 function LoginPage() {
   const navigate = useNavigate();
   const idRef = useRef(null);
@@ -83,7 +87,6 @@ function LoginPage() {
       .then((data) => {
         localStorage.setItem("access_token", data.access_token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        setLoading(false);
         addToast("로그인이 완료되었습니다.", "NOTICE");
         navigate("/chat");
       })
@@ -91,6 +94,7 @@ function LoginPage() {
         if (err.response.status === 401)
           setMessage("아이디와 비밀번호가 일치하지 않습니다.");
       });
+    setLoading(false);
   };
 
   return (
@@ -101,7 +105,7 @@ function LoginPage() {
             <Icon icon="eos-icons:three-dots-loading" width={35} height={35} />
           </LoadingBallon>
         )}
-        <Serong size="50px" />
+        <Img src={serongMoving} />
         <Notice>
           세종대 홈페이지 로그인을 위한 학번과 비밀번호를 사용해 로그인 하실 수
           있습니다.
