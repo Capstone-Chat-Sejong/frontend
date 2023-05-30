@@ -25,6 +25,8 @@ const Ballon = styled.div`
   padding: 10px 15px;
   word-break: break-all;
   font-size: 12px;
+
+  max-width: 250px;
 `;
 
 const Feedback = styled.div`

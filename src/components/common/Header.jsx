@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Icon } from "@iconify/react";
 
 const Container = styled.header`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   display: flex;

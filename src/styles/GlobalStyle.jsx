@@ -8,16 +8,16 @@ export const GlobalStyle = createGlobalStyle`
   }
   *,
   *::before,
-  *::after {  
+  *::after {
     font-family: Noto Sans KR, sans-serif;
     box-sizing: border-box;
     margin: 0;
-    padding: 0; 
+    padding: 0;
   }
-  html, 
+  html,
   body {
     height: 100%;
-    background-color: #F1E9E9;
+    /* background-color: #F1E9E9; */
   }
   ul,
   li {

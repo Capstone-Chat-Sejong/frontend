@@ -15,9 +15,13 @@ const fadeInUp = keyframes`
 `;
 
 const Sheet = styled.div`
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
+  max-width: 600px;
+  margin: auto;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   padding: 15px 15px;
