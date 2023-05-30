@@ -73,7 +73,11 @@ function ChattingPage() {
         setIsLoading(false);
         setChatData((prevData) => [
           ...prevData,
-          { isMine: false, component: () => CHAT_PROCESSOR.general(data.msg) },
+          {
+            isMine: false,
+            component: () =>
+              CHAT_PROCESSOR.general(data.msg).map((line) => <div>{line}</div>),
+          },
         ]);
       });
     });

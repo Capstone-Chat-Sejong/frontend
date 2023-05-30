@@ -17,7 +17,7 @@ function GraduateInfo() {
   return (
     <Container>
       졸업요건을 검사해볼 수 있는 사이트입니다!
-      <a href={data?.output}>{data?.output}</a>
+      <a href={data?.output}>{data?.output.split("\n")[1]}</a>
     </Container>
   );
 }
