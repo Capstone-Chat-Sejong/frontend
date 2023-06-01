@@ -74,6 +74,7 @@ function ChattingPage() {
         setChatData((prevData) => [
           ...prevData,
           {
+            type: "GENERAL",
             isMine: false,
             component: () =>
               CHAT_PROCESSOR.general(data.msg).map((line) => <div>{line}</div>),
@@ -91,7 +92,7 @@ function ChattingPage() {
 
   return (
     <Page>
-      <Header onClickMenu={() => setOnBottomSheet(true)} />
+      <Header onClickMenu={() => setOnBottomSheet(true)} mode="CHAT" />
       <ChatPageContainer ref={containerRef}>
         <ChatContext.Provider
           value={{
@@ -151,6 +152,7 @@ function ChattingPage() {
           addToast("로그아웃 되었습니다.", "NOTICE");
           navigate("/login");
         }}
+        mode="CHAT"
       />
     </Page>
   );
