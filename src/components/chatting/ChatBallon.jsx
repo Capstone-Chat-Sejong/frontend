@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Serong from "../common/Serong";
 import { Icon } from "@iconify/react";
+import { useState } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -9,6 +10,8 @@ const Container = styled.div`
   gap: 5px;
   font-size: 14px;
   align-items: baseline;
+
+  position: relative;
 `;
 
 const BallonBox = styled.div`
@@ -31,42 +34,42 @@ const Ballon = styled.div`
 
 const Feedback = styled.div`
   display: flex;
-  justify-content: flex-end;
-  gap: 6px;
-  padding: 0 5px;
+  align-self: flex-end;
+  gap: 3px;
+  padding: 5px 0 2px 0;
 `;
 const SlideContainer = styled.div`
   width: calc(100% - 45px);
 `;
+
 function ChatBallon({ isMine, type, children }) {
+  const [feedbackState, setFeedbackState] = useState();
+
   return (
     <Container isMine={isMine}>
       {!isMine && <Serong size="45px" />}
       {type === "SLIDER" && <SlideContainer>{children}</SlideContainer>}
       <BallonBox>
-        {type !== "SLIDER" && (
-          <Ballon isMine={isMine}>
-            {children}
-            {!isMine &&
-              false && ( // TODO 피드백 받을 만한 정보일 때만, 클릭시 fill
-                <Feedback>
-                  <Icon
-                    icon="bi:hand-thumbs-up"
-                    color="red"
-                    width="14"
-                    height="14"
-                  />
-                  <Icon
-                    icon="bi:hand-thumbs-down"
-                    color="blue"
-                    width="14"
-                    height="14"
-                  />
-                </Feedback>
-              )}
-          </Ballon>
-        )}
+        {type !== "SLIDER" && <Ballon isMine={isMine}>{children}</Ballon>}
       </BallonBox>
+      {!isMine && type === "GENERAL" && (
+        <Feedback>
+          <Icon
+            icon="fluent:thumb-like-16-filled"
+            color={feedbackState === "GOOD" ? "pink" : "gray"}
+            width="14"
+            height="14"
+            onClick={() => setFeedbackState("GOOD")}
+          />
+          <Icon
+            icon="fluent:thumb-dislike-20-filled"
+            color={feedbackState === "BAD" ? "skyblue" : "gray"}
+            width="14"
+            height="14"
+            onClick={() => setFeedbackState("BAD")}
+          />
+        </Feedback>
+      )}
     </Container>
   );
 }
