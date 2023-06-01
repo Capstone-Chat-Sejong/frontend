@@ -12,6 +12,7 @@ const MajorBtn = styled.button`
   border-radius: 10px;
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.25);
   font-size: 11px;
+  color: black;
 `;
 
 const Container = styled.div`

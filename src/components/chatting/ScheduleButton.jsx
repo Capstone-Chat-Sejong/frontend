@@ -24,6 +24,9 @@ const Container = styled.div`
     align-items: center;
   }
 `;
+const Button = styled.button`
+  color: black;
+`;
 
 function ScheduleButton({ onClickRegister, onClickCheck }) {
   const [isRegistering, setIsRegistering] = useState(false);
@@ -37,8 +40,8 @@ function ScheduleButton({ onClickRegister, onClickCheck }) {
   };
   return (
     <Container>
-      <button onClick={clickRegisterHandler}>내 일정 등록</button>
-      <button onClick={clickCheckHandler}>내 일정 확인</button>
+      <Button onClick={clickRegisterHandler}>내 일정 등록</Button>
+      <Button onClick={clickCheckHandler}>내 일정 확인</Button>
       {isRegistering && <CalendarModal setIsRegistering={setIsRegistering} />}
       {isChecking && <MySchedule setIsChecking={setIsChecking} />}
     </Container>

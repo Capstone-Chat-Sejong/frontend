@@ -7,6 +7,7 @@ const Button = styled.button`
   background-color: ${({ theme }) => theme.color.lightgray};
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
+  color: black;
 
   margin: 3px;
   display: flex;
