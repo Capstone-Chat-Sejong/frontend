@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.header`
   position: absolute;
@@ -17,8 +18,8 @@ const Container = styled.header`
 `;
 
 const Left = styled.div`
-  //TODO 로고?
   width: 52px;
+  padding: 0 10px;
 `;
 const Center = styled.div`
   font-weight: 600;
@@ -30,10 +31,31 @@ const Right = styled.div`
   padding: 0 10px;
 `;
 
-function Header({ onClickMenu }) {
+function Header({ onClickMenu, mode }) {
+  const navigate = useNavigate();
+
   return (
     <Container>
-      <Left></Left>
+      <Left>
+        {mode === "CHAT" && (
+          <Icon
+            icon="pepicons-pop:bulletin-notice"
+            color="white"
+            width="23"
+            height="23"
+            onClick={() => navigate("/notice")}
+          />
+        )}
+        {mode === "NOTICE" && (
+          <Icon
+            icon="bi:chat-fill"
+            color="white"
+            width="23"
+            height="23"
+            onClick={() => navigate("/chat")}
+          />
+        )}
+      </Left>
       <Center>Serong</Center>
       <Right>
         <Icon
