@@ -32,7 +32,14 @@ export const QUICK_API = {
       // const url = URL.createObjectURL(blob);
       return data;
     }
-    if (title === "학과 정보" || title === "편의 시설" || data?.sub) {
+
+    if (
+      title === "학과 정보" ||
+      title === "편의 시설" ||
+      data?.sub ||
+      title === "법학부"
+    ) {
+      if (title === "법학부") return { content: data.output, sub: [] };
       const keys = Object.keys(res.data.sub);
       const dataList = keys.map((key) => {
         return { id: key, value: data.sub[key] };

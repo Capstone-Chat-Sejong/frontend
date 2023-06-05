@@ -90,10 +90,16 @@ function MajorInfo() {
                   isMine: true,
                   component: () => s.value,
                 });
-                ctx.addChat({
-                  isMine: false,
-                  component: () => <SubMajorInfo major={s.value} />,
-                });
+                if (data.sub === null) {
+                  ctx.addChat({
+                    isMine: false,
+                    component: () => data.content,
+                  });
+                } else
+                  ctx.addChat({
+                    isMine: false,
+                    component: () => <SubMajorInfo major={s.value} />,
+                  });
               }}
             >
               {s.value}
