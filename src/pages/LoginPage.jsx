@@ -89,12 +89,14 @@ function LoginPage() {
         localStorage.setItem("user", JSON.stringify(data.user));
         addToast("로그인이 완료되었습니다.", "NOTICE");
         navigate("/chat");
+        setLoading(false);
       })
       .catch((err) => {
-        if (err.response.status === 401)
+        if (err.response?.status === 401)
           setMessage("아이디와 비밀번호가 일치하지 않습니다.");
+        setLoading(false);
+        setMessage("네트워크에 문제가 있는 것 같습니다.");
       });
-    setLoading(false);
   };
 
   return (
