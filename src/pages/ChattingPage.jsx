@@ -69,20 +69,19 @@ function ChattingPage() {
     socket.on("connect", () => {
       console.log("connect");
       socket.emit("loggedin", {});
-      socket.on("reply", (data) => {
-        setIsLoading(false);
-        setChatData((prevData) => [
-          ...prevData,
-          {
-            type: "GENERAL",
-            isMine: false,
-            component: () =>
-              CHAT_PROCESSOR.general(data.msg).map((line) => <div>{line}</div>),
-          },
-        ]);
-      });
     });
-
+    socket.on("reply", (data) => {
+      setIsLoading(false);
+      setChatData((prevData) => [
+        ...prevData,
+        {
+          type: "GENERAL",
+          isMine: false,
+          component: () =>
+            CHAT_PROCESSOR.general(data.msg).map((line) => <div>{line}</div>),
+        },
+      ]);
+    });
     return () => {
       socket.off("connect");
       socket.off("reply");
