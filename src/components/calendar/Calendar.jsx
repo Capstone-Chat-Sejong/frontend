@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const DateContainer = styled.div`
   margin: 10px 0 10px 0;
-  width: 230px;
+  width: 100%;
   height: 160px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -13,7 +13,7 @@ const DateContainer = styled.div`
 `;
 const DayContainer = styled.div`
   margin: 20px 0 10px 0;
-  width: 230px;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 5px;

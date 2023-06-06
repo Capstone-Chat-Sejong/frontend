@@ -139,7 +139,10 @@ function NoticePage() {
             {!isLoading && notices?.map((v) => <NoticeBox value={v} />)}
           </NoticeContainer>
           <FloatingButton>
-            <a href="http://sejong.ac.kr/community/index.html#none">
+            <a
+              href="http://sejong.ac.kr/community/index.html#none"
+              style={{ color: "black" }}
+            >
               공지사항 바로가기
             </a>
           </FloatingButton>
