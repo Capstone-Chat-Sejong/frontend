@@ -1,6 +1,6 @@
 # Sejong Smart Assistance : 세롱이
 
-![](2023-06-07-01-52-45.png)
+![image](https://github.com/Capstone-Chat-Sejong/frontend/assets/73338341/3e290722-3f8f-4560-946e-a8ad5da35798)
 
 세종대학교 학생들의 학교 생활을 도와주는 스마트 비서 세롱이
 
@@ -19,10 +19,12 @@
 
 ## ⭐ 사용 기술 및 프로젝트 구조
 
-![](2023-06-07-01-56-10.png)
+![image](https://github.com/Capstone-Chat-Sejong/frontend/assets/73338341/4c97ddbb-6193-44a7-b32c-b99055bbb33a)
 
 ## ⭐ 결과물
 
-![ezgif com-video-to-gif (3)](https://github.com/Capstone-Chat-Sejong/frontend/assets/73338341/a4584077-277c-4010-b20e-5390adf51d14)
+<p align="center">
+<img src="https://github.com/Capstone-Chat-Sejong/frontend/assets/73338341/a4584077-277c-4010-b20e-5390adf51d14" width="40%" align="center">
 
-![ezgif com-video-to-gif (2)](https://github.com/Capstone-Chat-Sejong/frontend/assets/73338341/b86f1341-9028-400c-ab5b-70b0a04efd24)
+<img src="https://github.com/Capstone-Chat-Sejong/frontend/assets/73338341/b86f1341-9028-400c-ab5b-70b0a04efd24" width="40%" align="center">
+</p>
