@@ -24,7 +24,7 @@
 ## ⭐ 결과물
 
 <p align="center">
-<img src="https://github.com/Capstone-Chat-Sejong/frontend/assets/73338341/a4584077-277c-4010-b20e-5390adf51d14" width="40%" align="center">
-
-<img src="https://github.com/Capstone-Chat-Sejong/frontend/assets/73338341/b86f1341-9028-400c-ab5b-70b0a04efd24" width="40%" align="center">
+<img src="https://github.com/Capstone-Chat-Sejong/frontend/assets/73338341/4bb2aa43-b2c8-4255-8bf3-45c4555b8988" width="32%" align="center">
+<img src="https://github.com/Capstone-Chat-Sejong/frontend/assets/73338341/1513bb3e-160c-498d-8cb4-521b8939a6b0" width="32%" align="center">
+<img src="https://github.com/Capstone-Chat-Sejong/frontend/assets/73338341/b86f1341-9028-400c-ab5b-70b0a04efd24" width="32%" align="center">
 </p>
